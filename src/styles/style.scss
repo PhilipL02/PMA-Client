@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.oneBuilding {
+    display: flex;
+    background: #ccc;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    h2 {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    button {
+        margin-left: auto;
+    }
+}
+
+.taskTable {
+    display: grid;
+    border: 1px solid black;
+    .tableHead {
+        font-size: 1.3rem;
+    }
+    .oneTask {
+        border-top: 1px solid black;
+        .status_inProgress {
+            background-color: rgb(250, 250, 108);
+        }
+        .status_completed {
+            background-color: rgb(110, 224, 110);
+        }
+    } 
+    .tableHead, .oneTask {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        div {
+            padding: 1rem;
+        }
+        div:not(:last-child) {
+            border-right: 1px solid black;
+        }
+    }
+}
