@@ -22,13 +22,12 @@ const WorkerSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, set
                 userID,
             }
         })
-        response = await response.json()
         console.log(response)
-        if(response.success) {
+        if(response?.success) {
             getBuildings()
             setBuildingCode(undefined)
         }
-        else if(!response.success) setBuildingCodeWrong(true)
+        else if(response && !response.success) setBuildingCodeWrong(true)
     }
 
   

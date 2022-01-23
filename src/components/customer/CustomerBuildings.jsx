@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import TasksForBuilding from '../TasksForBuilding'
 
-import { phetch } from '../../utils/utils'
-
-const UserSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, setSelectedBuilding, setInvalidToken }) => {
+const UserSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, setSelectedBuilding, setInvalidToken, phetch }) => {
 
     const [newBuildingName, setNewBuildingName] = useState()
     const [selectedBuildingToDelete, setSelectedBuildingToDelete] = useState()
@@ -29,9 +27,8 @@ const UserSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, setSe
                 buildingName: newBuildingName,
             }
         })
-        response = await response.json()
         console.log(response)
-        if(response.success) getBuildings()
+        if(response?.success) getBuildings()
         if(response.type === 'InvalidToken') setInvalidToken(true)
     }   
 
@@ -43,9 +40,8 @@ const UserSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, setSe
                 buildingID,
             }
         })
-        response = await response.json()
         console.log(response)
-        if(response.success) getBuildings()
+        if(response?.success) getBuildings()
         if(response.type === 'InvalidToken') setInvalidToken(true)
     }
 

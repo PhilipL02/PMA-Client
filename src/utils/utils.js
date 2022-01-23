@@ -6,10 +6,11 @@ export const phetch = async (route, request) => {
         headers: { 
             'Authorization': sessionStorage.token, 
             'Content-Type': 'application/json', 
-            ...request.headers
+            'Accept': 'application/json',
+            ...request?.headers
         },
-        method: request.method,
-        body: JSON.stringify({...request.body})
+        method: request?.method || 'GET',
+        body: request?.body ? JSON.stringify({...request.body}) : null
     })
     return response
 }

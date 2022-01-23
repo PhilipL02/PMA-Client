@@ -25,10 +25,8 @@ const WorkerRoutes = ({ userID, setInvalidToken }) => {
                 userID,
             }
         })
-        response = await response.json()
         console.log(response)
-        if(response.success) setBuildings(response.data)
-        if(response.type === 'InvalidToken') setInvalidToken(true)
+        if(response?.success) setBuildings(response.data)
     }
 
     useEffect(() => {

@@ -10,9 +10,7 @@ import {
     Routes
 } from "react-router-dom";
 
-import { phetch } from '../../utils/utils'
-
-const SignIn = ({ handleSignInSuccess, from }) => {
+const SignIn = ({ handleSignInSuccess, phetch }) => {
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -27,12 +25,11 @@ const SignIn = ({ handleSignInSuccess, from }) => {
                 role
             }
         })
-        response = await response.json()
         console.log(response)
-        if(response.success) { 
+        if(response?.success) { 
             handleSignInSuccess(response.data)
         }
-        else if(!response.success) setSignInError(true)
+        else if(response && !response.success) setSignInError(true)
     }
 
     return (
