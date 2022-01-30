@@ -1,6 +1,10 @@
 import React from 'react';
 
-const TokenExpired = ({ userID, handleNewTokenSuccess, logOut, phetch }) => {
+import { useGlobal } from '../providers/GlobalProvider';
+
+const TokenExpired = ({ handleNewTokenSuccess, logOut }) => {
+
+    const { userID, phetch } = useGlobal()
 
     async function getNewToken() {
         let response = await phetch('/users/token/new', {
@@ -17,8 +21,8 @@ const TokenExpired = ({ userID, handleNewTokenSuccess, logOut, phetch }) => {
     return (
         <div className='tokenExpired'>
             <div className='innerTokenExpired'>
-                <h2>Din token har gått ut</h2>
-                <p>Vill du stanna inloggad?</p>
+                <h2>Din session har gått ut</h2>
+                <p>Vad vill du göra?</p>
                 <span>
                     <button onClick={getNewToken}>Stanna inloggad</button>
                     <button onClick={logOut}>Logga ut</button>
