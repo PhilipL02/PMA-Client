@@ -1,0 +1,15 @@
+.createAndMembersContainer {
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media only screen and (min-width: 56rem) {
+    .createAndMembersContainer {
+        flex-direction: row-reverse;
+        gap: 3rem;
+    }
+}
