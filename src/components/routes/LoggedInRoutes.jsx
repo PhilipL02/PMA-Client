@@ -1,132 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import CustomerRoutes from './CustomerRoutes';
 import WorkerRoutes from './WorkerRoutes';
-import Sidenav from '../Sidenav/Sidenav';
-import SidenavBlock from '../Sidenav/SidenavBlock';
 import TokenExpired from '../TokenExpired';
+import { useGlobal } from '../../providers/GlobalProvider';
+
+import { ReactComponent as HideIcon } from '../../assets/svg/Cross.svg'
+import { ReactComponent as ShowIcon } from '../../assets/svg/Bars.svg'
+import LeftSidenav from '../LeftSidenav';
+import DataProvider from '../../providers/DataProvider';
+import useBreakpoint from '../../hooks/useBreakpoint';
 import { clsx } from '../../utils/utils';
 
-const LoggedInRoutes = ({ loggedInUserID, loggedInRole, logOut, invalidToken, setInvalidToken, handleNewTokenSuccess, phetch }) => {
+const LoggedInRoutes = ({ logOut, handleNewTokenSuccess }) => {
+
+    const { userID, userRole, invalidToken, phetch } = useGlobal()
+
+    const location = useLocation()
+    const { lg } = useBreakpoint()
 
     const [selectedBuilding, setSelectedBuilding] = useState()
-    const [buildings, setBuildings] = useState()
-    const [showSidenav, setShowSidenav] = useState()
+    const [showSidenav, setShowSidenav] = useState(lg)
 
-    useEffect(() => {
-        if(!loggedInUserID) return
-        getBuildings()
-    }, [loggedInUserID])
-
-    async function getBuildings() {
-        let response = await phetch('/buildings/get', {
-            method: 'POST',
-            body: {
-                userID: loggedInUserID,
-            }
-        })
-        console.log(response)
-        if(response?.success) setBuildings(response.data)
+    function changeSidenav(newState) {
+        if(lg) return
+        setShowSidenav(newState)
     }
 
+    useEffect(() => {
+        setShowSidenav(lg)
+    }, [lg])
+
+    useEffect(() => {
+        if(lg) return
+        setShowSidenav(false)
+    }, [location])
+
     return (
-        <>
+        <DataProvider>
+            {invalidToken && <TokenExpired handleNewTokenSuccess={handleNewTokenSuccess} logOut={logOut}/>}
             <header>
-                <button onClick={() => setShowSidenav(v => !v)}>{showSidenav ? 'Göm' : 'Visa'} sidenav</button>
+                {!lg && <span className='sidenavToggleSlot'>{showSidenav ? <HideIcon onClick={() => changeSidenav(false)}/> : <ShowIcon onClick={() => changeSidenav(true)}/>}</span>}
+                <img src={require('../../images/PHUSlogo.png')}/>
             </header>
-            <Sidenav className={clsx({hidden: !showSidenav})}>
-                <>
-                    <>
-                        <SidenavBlock
-                            to='/mittkonto'
-                            text="Mitt konto"
-                        />
-                        <SidenavBlock
-                            text="Byggnader"
-                            dropContent={
-                                <>
-                                    <SidenavBlock
-                                        to='/byggnader'
-                                        text='Mina byggnader'
-                                    />
-                                </>
-                            }
-                        />
-                        <SidenavBlock
-                            text="Uppgifter"
-                            dropContent={
-                                <>
-                                    <SidenavBlock
-                                        to='/'
-                                        text='Aktiva uppgifter'
-                                    />
-                                    <SidenavBlock
-                                        to='/'
-                                        text='Klara uppgifter'
-                                    />
-                                    <SidenavBlock
-                                        text='Uppgifter för byggnad'
-                                        dropContent={
-                                            buildings &&
-                                            <>
-                                                {buildings.map(b => (
-                                                    <SidenavBlock
-                                                        key={b._id}
-                                                        to={`/uppgifter?id=${b._id}`}
-                                                        text={b.buildingName}
-                                                        onClick={() => setSelectedBuilding(b)}
-                                                    />
-                                                ))}
-                                            </>
-                                        }
-                                    />
-                                </>
-                            }
-                        />
-                    </>
-                    <SidenavBlock
-                        className='logoutBlock'
-                        text="Logga ut"
-                        logOut={logOut}
+            <LeftSidenav 
+                showSidenav={showSidenav} 
+                logOut={logOut} 
+            />
+            <div className={clsx(['content', {right: lg}])} onClick={() => changeSidenav(false)}>
+                <span style={{width: '100%'}}>
+                    <CustomerRoutes 
+                        selectedBuilding={selectedBuilding} 
+                        setSelectedBuilding={setSelectedBuilding}
                     />
-                </>
-            </Sidenav>
-            <div className='content'>
-                <span>
-                    {loggedInRole === "customer" && 
-                        <CustomerRoutes 
-                            userID={loggedInUserID} 
-                            setInvalidToken={setInvalidToken} 
-                            buildings={buildings}
-                            getBuildings={getBuildings}
-                            selectedBuilding={selectedBuilding} 
-                            setSelectedBuilding={setSelectedBuilding}
-                            phetch={phetch}
-                        />
-                    }
-                    {loggedInRole === "worker" && <WorkerRoutes userID={loggedInUserID} logOut={logOut} setInvalidToken={setInvalidToken}/>}
                 </span>
             </div>
-            {/* <Sidenav right>
-                <SidenavBlock
-                    text="Medlemmar"
-                    dropContent={
-                        <>
-                            <SidenavBlock
-                                text='Kalle Eriksson'
-                            />
-                            <SidenavBlock
-                                text='Pelle Olsson'
-                            />
-                            <SidenavBlock
-                                text='Emil Hödertennen'
-                            />
-                        </>
-                    }
-                />
-            </Sidenav> */}
-            {invalidToken && <TokenExpired userID={loggedInUserID} handleNewTokenSuccess={handleNewTokenSuccess} logOut={logOut} phetch={phetch}/>}
-        </>
+        </DataProvider>
     )
 };
 
