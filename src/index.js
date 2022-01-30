@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {
-  Router,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-  Navigate,
-  Outlet,
-  BrowserRouter
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+
+import GlobalProvider from './providers/GlobalProvider';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
-    </BrowserRouter>,
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
