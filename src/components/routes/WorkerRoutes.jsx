@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import WorkerBuildings from '../worker/WorkerBuildings';
-import TasksForBuilding from '../TasksForBuilding';
-
-import { phetch } from '../../utils/utils';
+import TasksForBuilding from '../TaskTable/TasksForBuilding';
+import { useGlobal } from '../../providers/GlobalProvider';
 
 const WorkerRoutes = ({ userID, setInvalidToken }) => {
+
+    const { phetch } = useGlobal()
 
     const [buildings, setBuildings] = useState()
     const [selectedBuilding, setSelectedBuilding] = useState()
@@ -36,7 +37,7 @@ const WorkerRoutes = ({ userID, setInvalidToken }) => {
 
     return (
         <Routes>
-            <Route exact path='/byggnader' element={
+            <Route exact path='/minabyggnader' element={
                 <WorkerBuildings 
                     userID={userID} 
                     buildings={buildings} 
@@ -51,7 +52,7 @@ const WorkerRoutes = ({ userID, setInvalidToken }) => {
                     userID={userID} 
                 />}
             />}
-            <Route path='*' element={<Navigate to='/byggnader'/>}/>
+            <Route path='*' element={<Navigate to='/minabyggnader'/>}/>
         </Routes>
     )
 };

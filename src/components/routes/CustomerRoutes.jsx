@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import CustomerBuildings from '../customer/CustomerBuildings';
-import TasksForBuilding from '../TasksForBuilding';
+import MyBuildings from '../customer/MyBuildings/MyBuildings';
+import OneBuilding from '../customer/MyBuildings/OneBuilding';
+import MyTasks from '../MyTasks';
+import TasksForBuilding from '../TaskTable/TasksForBuilding';
+import CreateTaskProvider from '../../providers/CreateTaskProvider';
+import OneTask from '../OneTask';
+import Start from '../Start';
 
-const CustomerRoutes = ({ userID, setInvalidToken, buildings, getBuildings, selectedBuilding, setSelectedBuilding, phetch }) => {
+const CustomerRoutes = ({ selectedBuilding, setSelectedBuilding }) => {
     return (
         <Routes>
-            <Route exact path='/byggnader' element={
-                <CustomerBuildings 
-                    userID={userID} 
-                    buildings={buildings} 
-                    getBuildings={getBuildings} 
-                    selectedBuilding={selectedBuilding} 
+            <Route exact path='/minabyggnader' element={
+                <MyBuildings 
                     setSelectedBuilding={setSelectedBuilding}
-                    setInvalidToken={setInvalidToken}
-                    phetch={phetch}
                 />
             }/>
-            <Route path='/uppgifter' element={
+            <Route path='/byggnad' element={
+                <CreateTaskProvider>
+                    <OneBuilding 
+                        selectedBuilding={selectedBuilding} 
+                    />
+                </CreateTaskProvider>
+            }/>
+            {/* <Route path='/uppgifter' element={
                 <TasksForBuilding 
                     building={selectedBuilding} 
-                    userID={userID} 
-                    phetch={phetch}
                 />}
+            /> */}
+            <Route path='/minauppgifter' element={
+                <MyTasks />}
             />
+            <Route path='/uppgift' element={
+                <OneTask />
+            }/>
+            <Route exact path='/' element={
+                <Start/>
+            }/>
             <Route exact path='/mittkonto' element={"Mitt konto"}/>
-            <Route path='*' element={<Navigate to='/byggnader'/>}/>
+            <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
     )
 };
