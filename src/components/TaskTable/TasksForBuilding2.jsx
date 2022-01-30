@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import OneTaskInTable from './OneTaskInTable'
-import CreateTask from './CreateTask'
-
-import { phetch } from '../utils/utils'
+import CreateTask from '../CreateTask'
 
 const TasksForBuilding = ({ selectedBuilding, userID }) => {
 
@@ -20,7 +18,7 @@ const TasksForBuilding = ({ selectedBuilding, userID }) => {
 
     useEffect(() => {
         if(building) return
-        if(!buildingID) return navigate('/byggnader')
+        if(!buildingID) return navigate('/minabyggnader')
         getBuildingData()
         if(!building) return
         getTasks()
@@ -37,7 +35,7 @@ const TasksForBuilding = ({ selectedBuilding, userID }) => {
         })
         console.log(response)
         if(response?.success) setBuilding(response.data)
-        if(response && !response.success) navigate('/byggnader')
+        if(response && !response.success) navigate('/minabyggnader')
         // if(response.type === 'InvalidToken') setInvalidToken(true)
     }
 
