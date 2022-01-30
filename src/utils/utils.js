@@ -1,19 +1,19 @@
 import jwt_decode from 'jwt-decode'
 import { SERVER_URL } from "./constants";
 
-export const phetch = async (route, request) => {
-    let response = await fetch(SERVER_URL + route, {
-        headers: { 
-            'Authorization': sessionStorage.token, 
-            'Content-Type': 'application/json', 
-            'Accept': 'application/json',
-            ...request?.headers
-        },
-        method: request?.method || 'GET',
-        body: request?.body ? JSON.stringify({...request.body}) : null
-    })
-    return response
-}
+// export const phetch = async (route, request) => {
+//     let response = await fetch(SERVER_URL + route, {
+//         headers: { 
+//             'Authorization': sessionStorage.token, 
+//             'Content-Type': 'application/json', 
+//             'Accept': 'application/json',
+//             ...request?.headers
+//         },
+//         method: request?.method || 'GET',
+//         body: request?.body ? JSON.stringify({...request.body}) : null
+//     })
+//     return response
+// }
 
 export function isTokenAlive(){
     try{
@@ -47,6 +47,9 @@ export const clsx = (...args) =>
         : ""
     ).join(" ").trim()
 
+
+export const getCSSVariable = (key) => getComputedStyle(document.documentElement).getPropertyValue(key).trim()
+export const setCSSVariable = (key, value) => document.documentElement.style.setProperty(key, value)
     
 export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
