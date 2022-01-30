@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import TasksForBuilding from '../TasksForBuilding';
-
-import { phetch } from '../../utils/utils';
+import TasksForBuilding from '../TaskTable/TasksForBuilding';
+import { useGlobal } from '../../providers/GlobalProvider';
 
 const WorkerSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, setSelectedBuilding }) => {
+
+    const { phetch } = useGlobal()
 
     const [buildingCode, setBuildingCode] = useState()
     const [isBuildingCodeWrong, setBuildingCodeWrong] = useState(false)
