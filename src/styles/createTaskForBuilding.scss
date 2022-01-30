@@ -1,0 +1,53 @@
+.createTaskForBuilding {
+    margin: auto;
+    margin-top: 1rem;
+    width: 95%;
+    padding: 0.5rem;
+    padding-top: 0.75rem;
+    background-color: #f4f6fb;
+    box-shadow: 0 0 4px 0 #404F66 inset;
+    h1 {
+        padding-left: 0.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+    form {
+        label {
+            background-color: white;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+            border: 1px solid black;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        input[type="submit"] {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        .assignTaskBox {
+            background-color: white;
+            width: 100%;
+            border: 1px solid black;
+            min-height: 36px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            div {
+                padding-left: 0.5rem;
+                display: flex;
+                gap: 0.5rem;
+                span:nth-child(2) {
+                    display: flex;
+                    align-items: center;
+                    padding-left: 0.2rem;
+                    padding-right: 0.2rem;
+                }
+            }
+        }
+    }
+}
