@@ -6,29 +6,31 @@ import OneBuilding from '../customer/MyBuildings/OneBuilding';
 import MyTasks from '../MyTasks';
 import TasksForBuilding from '../TaskTable/TasksForBuilding';
 import CreateTaskProvider from '../../providers/CreateTaskProvider';
-import OneTask from '../OneTask';
+import OneTask from '../OneTask/OneTask';
 import Start from '../Start';
+import CreateBuilding from '../customer/MyBuildings/CreateBuilding';
+import { useGlobal } from '../../providers/GlobalProvider';
+import MyAccount from '../MyAccount';
 
-const CustomerRoutes = ({ selectedBuilding, setSelectedBuilding }) => {
+const LoggedInContent = () => {
+
+    const { userRole } = useGlobal()
+
     return (
         <Routes>
             <Route exact path='/minabyggnader' element={
-                <MyBuildings 
-                    setSelectedBuilding={setSelectedBuilding}
-                />
+                <MyBuildings/>
             }/>
             <Route path='/byggnad' element={
                 <CreateTaskProvider>
-                    <OneBuilding 
-                        selectedBuilding={selectedBuilding} 
-                    />
+                    <OneBuilding/>
                 </CreateTaskProvider>
             }/>
-            {/* <Route path='/uppgifter' element={
-                <TasksForBuilding 
-                    building={selectedBuilding} 
-                />}
-            /> */}
+            {userRole === 'customer' &&
+                <Route path='/nybyggnad' element={
+                    <CreateBuilding />
+                }/>
+            }
             <Route path='/minauppgifter' element={
                 <MyTasks />}
             />
@@ -38,10 +40,12 @@ const CustomerRoutes = ({ selectedBuilding, setSelectedBuilding }) => {
             <Route exact path='/' element={
                 <Start/>
             }/>
-            <Route exact path='/mittkonto' element={"Mitt konto"}/>
+            <Route exact path='/mittkonto' element={
+                <MyAccount/>
+            }/>
             <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
     )
 };
 
-export default CustomerRoutes;
+export default LoggedInContent;

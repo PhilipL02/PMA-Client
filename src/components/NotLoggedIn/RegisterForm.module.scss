@@ -1,32 +1,50 @@
 .form {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    'firstName lastName'
-    'email email'
-    'password password'
-    'confirmPassword confirmPassword'
-    'code code'
-    'submit submit';
+    display: flex;
+    flex-direction: column;
+    // display: grid;
+    // grid-template-columns: 50% 50%;
+    // grid-template-areas: 
+    // 'firstName firstName'
+    // 'lastName lastName'
+    // 'email email'
+    // 'password password'
+    // 'confirmPassword confirmPassword'
+    // 'passwordsDoNotMatch passwordsDoNotMatch'
+    // 'code code'
+    // 'errorMessage errorMessage'
+    // 'submit submit';
     gap: 0.4rem;
-    .firstName {
-        grid-area: firstName;
-    }
-    .lastName {
-        grid-area: lastName;
+    .firstLastName {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        .firstName {
+
+        }
+        .lastName {
+
+        }
     }
     .email {
-        grid-area: email;
+
     }
     .password {
-        grid-area: password;
+
     }
     .confirmPassword {
-        grid-area: confirmPassword;
+
+    }
+    .passwordsDoNotMatch {
+        background-color: rgb(255, 203, 107);
+        color: rgb(136, 75, 0);
+        font-weight: bold;
+        font-size: 0.9rem;
+        padding: 0.3rem;
+        border: 1px solid rgb(136, 75, 0);
     }
     .code {
-        grid-area: code;
+
     }
     input:not([type=submit]) {
         // box-shadow: 0px 0px 5px 0 var(--primary-light) inset;
@@ -44,7 +62,7 @@
         }
     }
     input[type=submit] {
-        grid-area: submit;
+
         border-radius: 5px;
         outline: none;
         // border: 2px solid var(--primary);
@@ -62,6 +80,27 @@
             // background-color: var(--secondary-lighter);
             background-color: darken(#6e84a5, 10%);
         }
+        &:disabled {
+            border: 2px solid #8192aa;
+            background-color: #b3c0d3;
+            cursor: not-allowed;
+        }
     }
 }
 
+@media only screen and (min-width: 56rem) {
+    .form {
+        // grid-template-areas: 
+        // 'firstName lastName'
+        // 'email email'
+        // 'password password'
+        // 'confirmPassword confirmPassword'
+        // 'passwordsDoNotMatch passwordsDoNotMatch'
+        // 'code code'
+        // 'errorMessage errorMessage'
+        // 'submit submit';
+        .firstLastName {
+            flex-direction: row;
+        }
+    }
+}

@@ -4,10 +4,12 @@ import { useGlobal } from '../../../providers/GlobalProvider';
 import { useCreateTask } from '../../../providers/CreateTaskProvider';
 
 import { ReactComponent as Cross } from '../../../assets/svg/Cross.svg';
+import { useData } from '../../../providers/DataProvider';
 
 const CreateTask = ({ buildingID, getTasks }) => {
 
     const { phetch } = useGlobal()
+    const { getMyTasks } = useData()
     const { assignedToUser, setAssignedToUser, setSelectAssignedToUser } = useCreateTask()
 
     const [taskName, setTaskName] = useState()
@@ -27,6 +29,7 @@ const CreateTask = ({ buildingID, getTasks }) => {
         console.log(response)
         if(response?.success) {
             getTasks()
+            getMyTasks()
             resetForm(e)
         } 
     }

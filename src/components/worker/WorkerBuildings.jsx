@@ -10,9 +10,9 @@ const WorkerSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, set
     const [buildingCode, setBuildingCode] = useState()
     const [isBuildingCodeWrong, setBuildingCodeWrong] = useState(false)
 
-    useEffect(() => {
-        setSelectedBuilding(undefined)
-    }, [])
+    // useEffect(() => {
+    //     setSelectedBuilding(undefined)
+    // }, [])
 
     async function joinBuilding(e) {
         e.preventDefault()
@@ -36,7 +36,7 @@ const WorkerSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, set
         <>
             {buildings && !selectedBuilding && buildings.map(b => (
                 <div key={b._id} className='oneBuilding'>
-                    <h2 onClick={e => setSelectedBuilding(b)}>{b.buildingName}</h2>
+                    {/* <h2 onClick={e => setSelectedBuilding(b)}>{b.buildingName}</h2> */}
                 </div>
             ))}
             <h3>Gå med i byggnad</h3>
@@ -46,11 +46,11 @@ const WorkerSignedIn = ({ userID, buildings, getBuildings, selectedBuilding, set
                 <br/>
                 {isBuildingCodeWrong && <p>Dålig kod</p>}
             </form>
-            {selectedBuilding && 
+            {/* {selectedBuilding && 
                 <>
                     <TasksForBuilding building={selectedBuilding} userID={userID} />
                 </>
-            }
+            } */}
         </>
     )
 };

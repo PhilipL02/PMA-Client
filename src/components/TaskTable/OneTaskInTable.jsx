@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { clsx } from '../../utils/utils'
+
+const priorities = {
+    low: 'Låg',
+    high: 'Hög',
+}
+
 
 const statuses = {
     idle: 'Inte igång',
@@ -17,7 +23,7 @@ const statusPrefixes = {
     completed: 'D_',
 }
 
-const OneTaskInTable = ({ task, userID, buildingAdminUserID, buildingMembers, deleteTask, takeOnTask, removeFromTask, leaveTask, taskCompleted, taskNotCompleted }) => {
+const OneTaskInTable = ({ task, isOwner, buildingMembers, deleteTask, takeOnTask, removeFromTask, leaveTask, taskCompleted, taskNotCompleted }) => {
 
     const navigate = useNavigate()
 
@@ -28,11 +34,15 @@ const OneTaskInTable = ({ task, userID, buildingAdminUserID, buildingMembers, de
     }
 
     return (
-        <tr onClick={() => navigate(`/uppgift?id=${task._id}`)}>
-            <td>{task.taskName}</td>
-            <td><p className={clsx(["status", `${[statusPrefixes[task.status]]}${[task.status]}`])}>{statuses[task.status]}</p></td>
-            <td>{getMemberName(task.assignedToUser)}</td>
-        </tr>
+        <>
+            <tr onClick={() => navigate(`/uppgift?id=${task._id}`)}>
+                <td>{task.taskName}</td>
+                <td><p className={clsx(["status", `${[statusPrefixes[task.status]]}${[task.status]}`])}>{statuses[task.status]}</p></td>
+                <td style={{textAlign: 'center'}}>{priorities[task.priority]}</td>
+                <td>{getMemberName(task.assignedToUser)}</td>
+                {/* {isOwner && <td style={{background: 'lightcoral', color: 'darkred', fontWeight: 'bold', cursor: 'pointer'}} onClick={e => (e.stopPropagation(), deleteTask(task._id))}>Ta bort</td>} */}
+            </tr>
+        </>
     )
 }
 

@@ -48,20 +48,19 @@ const MyTasks = ({ }) => {
         setMyCompletedTasksBuildingsIDs(uniqueIDs)
     }, [myCompletedTasks])
 
-    function getBuildingById(id) {
+    function getBuildingByID(id) {
         return buildings.filter(b => b._id === id)[0]
     }
 
     return (
         <>
-        <br/>
-        {myTasks && buildings?.length &&
+        {myTasks && buildings &&
             <div className='myTasks'>
                 <div className='myTasksGroup assigned'>
                     <div className='groupHeader'>Tilldelade uppgifter</div>
                     {myAssignedTasksBuildingsIDs?.length ? myAssignedTasksBuildingsIDs.map(buildingID => (
                         <div className='buildingGroup' key={buildingID}>
-                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingById(buildingID).buildingName}</span></div>
+                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingByID(buildingID).buildingName}</span></div>
                             {myAssignedTasks.map(task => {
                                 if(task.buildingID === buildingID) 
                                 return (
@@ -83,7 +82,7 @@ const MyTasks = ({ }) => {
                     <div className='groupHeader'>Aktiva uppgifter</div>
                     {myInProgressTasksBuildingsIDs?.length ? myInProgressTasksBuildingsIDs.map(buildingID => (
                         <div className='buildingGroup' key={buildingID}>
-                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingById(buildingID).buildingName}</span></div>
+                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingByID(buildingID).buildingName}</span></div>
                             {myInProgressTasks.map(task => {
                                 if(task.buildingID === buildingID) 
                                 return (
@@ -105,7 +104,7 @@ const MyTasks = ({ }) => {
                     <div className='groupHeader'>Klara uppgifter</div>
                     {myCompletedTasksBuildingsIDs?.length ? myCompletedTasksBuildingsIDs.map(buildingID => (
                         <div className='buildingGroup' key={buildingID}>
-                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingById(buildingID).buildingName}</span></div>
+                            <div className='buildingGroupHeader'><HouseIcon className='houseIcon'/><span className='text'>{getBuildingByID(buildingID).buildingName}</span></div>
                             {myCompletedTasks.map(task => {
                                 if(task.buildingID === buildingID) 
                                 return (

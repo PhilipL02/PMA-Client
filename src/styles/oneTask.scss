@@ -1,0 +1,544 @@
+@import './variables.scss';
+
+.oneTask {
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+    min-height: 5rem;
+    &.idle {
+        .header {
+            background-color: darken($clr-idle, 10%);
+            color: darken($clr-idle-font, 10%);
+            border-bottom: 2px solid darken($clr-idle-font, 10%);
+            .taskBuilding {
+                .building {
+                    background-color: $clr-idle;
+                    color: 2px solid darken($clr-idle-font, 10%);
+                    border: 2px solid darken($clr-idle-font, 10%);
+                    &:hover {
+                        background-color: darken($clr-idle, 13%);
+                    }
+                    svg {
+                        fill: darken($clr-idle-font, 10%);
+                    }
+                }
+            }
+        }
+        .ownerOptions {
+            background-color: darken($clr-idle, 15%);
+        }
+        .taskContent {
+            background-color: lighten($clr-idle, 4%);
+            .options {
+                button {
+                    border: 2px solid darken($clr-idle-font, 10%);
+                }
+            }
+        }
+        background-color: $clr-idle;                    
+    }
+    &.assigned {
+        .header {
+            background-color: darken($clr-assigned, 10%);
+            color: darken($clr-assigned-font, 10%);
+            border-bottom: 2px solid darken($clr-assigned-font, 10%);
+            .taskBuilding {
+                .building {
+                    background-color: $clr-assigned;
+                    color: 2px solid darken($clr-assigned-font, 10%);
+                    border: 2px solid darken($clr-assigned-font, 10%);
+                    &:hover {
+                        background-color: darken($clr-assigned, 20%);
+                    }
+                    svg {
+                        fill: darken($clr-assigned-font, 10%);
+                    }
+                }
+            }
+        }
+        .ownerOptions {
+            background-color: darken($clr-assigned, 15%);
+        }
+        .taskContent {
+            background-color: lighten($clr-assigned, 4%);
+            .options {
+                button {
+                    border: 2px solid darken($clr-assigned-font, 10%);
+                }
+            }
+        }
+        background-color: $clr-assigned;                    
+    }
+    &.inProgress {
+        .header {
+            background-color: darken($clr-inProgress, 10%);
+            color: darken($clr-inProgress-font, 10%);
+            border-bottom: 2px solid darken($clr-inProgress-font, 10%);
+            .taskBuilding {
+                .building {
+                    background-color: $clr-inProgress;
+                    color: darken($clr-inProgress-font, 10%);
+                    border: 2px solid darken($clr-inProgress-font, 10%);
+                    &:hover {
+                        background-color: darken($clr-inProgress, 20%);
+                    }
+                    svg {
+                        fill: darken($clr-inProgress-font, 10%);
+                    }
+                }
+            }
+        }
+        .ownerOptions {
+            background-color: darken($clr-inProgress, 15%);
+        }
+        .taskContent {
+            background-color: lighten($clr-inProgress, 4%);
+            .options {
+                button {
+                    border: 2px solid darken($clr-inProgress-font, 10%);
+                }
+            }
+        }
+        background-color: $clr-inProgress;                    
+    }
+    &.completed {
+        .header {
+            background-color: darken($clr-completed, 10%);
+            color: darken($clr-completed-font, 10%);
+            border-bottom: 2px solid darken($clr-completed-font, 10%);
+            .taskBuilding {
+                .building {
+                    background-color: $clr-completed;
+                    color: darken($clr-completed-font, 10%);
+                    border: 2px solid darken($clr-completed-font, 10%);
+                    &:hover {
+                        background-color: darken($clr-completed, 20%);
+                    }
+                    svg {
+                        fill: darken($clr-completed-font, 10%);
+                    }
+                }
+            }
+        }
+        .ownerOptions {
+            background-color: darken($clr-completed, 15%);
+        }
+        .taskContent {
+            background-color: lighten($clr-completed, 4%);
+            .options {
+                button {
+                    border: 2px solid darken($clr-completed-font, 10%);
+                }
+            }
+        }
+        background-color: $clr-completed;                    
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        height: 5rem;
+        background-color: white;
+        align-items: center;
+        .taskName {
+            text-transform: uppercase;
+            padding-left: 1.25rem;
+            font-size: 0.9rem;
+            max-width: 12rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 5;
+            h2 {
+                font-weight:900;
+            }
+        }
+        .taskBuilding {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            .building {
+                background-color: white;
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.7rem;
+                max-width: 9rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: bold;
+                border-radius: 15px;
+                padding: 0.5rem;
+                padding-left: 0.85rem;
+                padding-right: 0.85rem;
+                width: fit-content;
+                margin-right: 1rem;
+                cursor: pointer;
+                svg {
+                    height: 1.4rem;
+                    min-width: 1rem;
+                }
+            }
+        }
+    }
+    .ownerOptions {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.5rem;
+        border-bottom: 1px solid black;
+        button {
+            min-width: 8rem;
+            padding: 0.3rem 0;
+            cursor: pointer;
+        }
+    }
+    .taskContent {
+        width: 100%;
+        padding: 1rem;
+        .options {
+            border-top: 1px solid black;
+            padding-top: 1rem;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            button {
+                height: 2rem;
+                width: 9rem;
+                font-size: 0.9rem;
+                background-color: transparent;
+                outline: none;
+                cursor: pointer;
+                &:hover {
+                    font-weight: bold;
+                    font-size: 0.925rem;
+                }
+            }
+        }
+    }
+    .commentsContainer {
+        border-top: 2px solid black;
+        .comments {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 1rem;
+            .ownComment, .otherComment {
+                width: fit-content;
+                max-width: 40%;
+                box-shadow: 0 0 5px rgb(100, 100, 100);
+                background-color: white;
+                .user {
+                    font-size: 0.7rem;
+                    padding: 0.2rem;
+                    padding-top: 0.4rem;
+                    padding-bottom: 0.2rem;
+                    margin-left: 0.25rem;
+                    margin-right: 0.25rem;
+                    border-bottom: 1px dotted black;
+                }
+                .comment {
+                    padding: 0.7rem;
+                    font-size: 0.9rem;
+                    word-wrap: break-word
+                }
+                .time {
+                    text-align: right;
+                    font-size: 0.6rem;
+                    padding: 0.2rem;
+                    padding-top: 0.2rem;
+                    padding-bottom: 0.4rem;
+                    margin-left: 0.25rem;
+                    margin-right: 0.25rem;
+                    border-top: 1px dotted black;
+                }
+            }
+            .ownComment {
+                align-self: right;
+                margin-left: auto;
+                button {
+                    width: 100%;
+                    padding: 0.15rem;
+                    font-size: 0.75rem;
+                    cursor: pointer;
+                }
+            }
+            .otherComment {
+                
+            }
+        }
+        .newComment {
+            padding: 1rem;
+            input[type="submit"] {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                margin-left: 0.25rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.taskPopup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .taskPopupInner {
+        min-width: 20rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        background-color: white;
+        margin-bottom: 7.5vh;
+        padding: 0.8rem;
+        border: 3px solid black;
+        .closeCross {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            width: 0.9rem;
+            cursor: pointer;
+        }
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            label {
+                margin-top: 0.4rem;
+                padding-bottom: 0.15rem;
+                font-size: 0.95rem;
+                width: fit-content;
+            }
+            input {
+                padding: 0.4rem;
+            }
+        }
+        .buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.25rem;
+            button {
+                width: 5rem;
+                padding: 0.15rem;
+                cursor: pointer;
+            }
+        }
+        .editTaskForm {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 56rem) {
+    .oneTask {
+
+        &.idle {
+            .header {
+
+                .taskBuilding {
+                    .building {
+  
+                        &:hover {
+
+                        }
+                        svg {
+
+                        }
+                    }
+                }
+            }
+            .taskContent {
+
+                .options {
+                    button {
+
+                    }
+                }
+            }
+                  
+        }
+        &.assigned {
+            .header {
+
+                .taskBuilding {
+                    .building {
+
+                        &:hover {
+
+                        }
+                        svg {
+
+                        }
+                    }
+                }
+            }
+            .taskContent {
+
+                .options {
+                    button {
+
+                    }
+                }
+            }
+               
+        }
+        &.inProgress {
+            .header {
+
+                .taskBuilding {
+                    .building {
+
+                        &:hover {
+
+                        }
+                        svg {
+
+                        }
+                    }
+                }
+            }
+            .taskContent {
+
+                .options {
+                    button {
+
+                    }
+                }
+            }
+          
+        }
+        &.completed {
+            .header {
+
+                .taskBuilding {
+                    .building {
+
+                        &:hover {
+
+                        }
+                        svg {
+
+                        }
+                    }
+                }
+            }
+            .taskContent {
+
+                .options {
+                    button {
+
+                    }
+                }
+            }
+               
+        }
+        .header {
+
+            .taskName {
+                font-size: 1.4rem;
+                max-width: 25rem;
+                h2 {
+
+                }
+            }
+            .taskBuilding {
+
+                .building {
+                    max-width: 20rem;
+                    font-size: 0.8rem;
+                    svg {
+
+                    }
+                }
+            }
+        }
+        .taskContent {
+
+            .options {
+
+                button {
+
+                    &:hover {
+
+                    }
+                }
+            }
+        }
+        .taskPopup {
+
+            .taskPopupInner {
+
+                .closeCross {
+
+                }
+                .inputs {
+
+                    label {
+
+                    }
+                    input {
+
+                    }
+                }
+                .buttons {
+
+                    button {
+
+                    }
+                }
+            }
+        }
+        .commentsContainer {
+
+            .comments {
+
+                .ownComment, .otherComment {
+
+                    .user {
+
+                    }
+                    .comment {
+
+                    }
+                    .time {
+
+                    }
+                }
+                .ownComment {
+
+                    button {
+
+                    }
+                }
+                .otherComment {
+                    
+                }
+            }
+            .newComment {
+
+                input[type="submit"] {
+
+                }
+            }
+        }
+    }
+}

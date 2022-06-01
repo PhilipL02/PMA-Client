@@ -1,7 +1,9 @@
 .form {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    // display: grid;
+    // grid-template-columns: 1fr;
     gap: 0.4rem;
     input:not([type=submit]) {
         // box-shadow: 0px 0px 5px 0 var(--primary-light) inset;

@@ -1,12 +1,14 @@
 .myTasks {
     width: 95%;
     margin: auto;
+    margin-top: 1.25rem;
     .myTasksGroup {
         .empty {
             width: 100%;
             display: block;
             text-align: center;
             color: gray;
+            font-size: 0.9rem;
             padding: 0.8rem;
             padding-left: 0.6rem;
             padding-right: 0.6rem;
@@ -14,18 +16,20 @@
         .groupHeader {
             width: 100%;
             font-weight: bold;
-            padding: 0.75rem;
+            padding: 0.95rem;
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
         }
         .buildingGroup {
             .buildingGroupHeader {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                height: 2rem;
+                height: 2.25rem;
                 font-size: 0.85rem;
                 font-weight: 600;
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
+                padding-left: 0.8rem;
+                padding-right: 0.8rem;
                 .text {
                     margin-top: 0.125rem;
                 }
@@ -43,9 +47,9 @@
                     cursor: pointer;
                     .taskName {
                         padding: 0.75rem;
-                        padding-top: 0.5rem;
-                        padding-bottom: 0.5rem;
-                        font-size: 0.8rem;
+                        padding-top: 0.85rem;
+                        padding-bottom: 0.85rem;
+                        font-size: 0.85rem;
                     }
                     .rightArrow {
                         display: flex;
@@ -73,7 +77,7 @@
             }
             .groupContent {
                 box-shadow: 0 5px 10px $clr-assigned; 
-                background-color: lighten($clr-assigned, 14%);
+                background-color: lighten($clr-assigned, 15%);
                 .task {
                     &:hover {
                         background-color: lighten($clr-assigned, 11%);

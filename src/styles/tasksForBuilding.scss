@@ -1,5 +1,6 @@
 .tasksForBuilding {
-    min-width: 20rem;
+    width: 95%;
+    max-width: 35rem;
     .aboveTable {
         min-width: 20rem;
         box-shadow: 0 0 10px #b9c1cf;
@@ -12,16 +13,13 @@
         }
         h1 {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
     }
     margin: auto;
     margin-top: 1rem;
-    display: grid;
-    justify-content: center;
-    align-items: center;
     table {
-        min-width: 20rem;
+        width: 100%;
         border-collapse: collapse;
         box-shadow: 0 5px 10px #b9c1cf;
         background-color: white;
@@ -33,26 +31,44 @@
             padding: 0.9rem 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 900;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             cursor: pointer;
+            user-select: none;
             &:hover {
                 background-color: rgb(245, 245, 245);
             }
         }
         td {
-            padding: 0.6rem 0.9rem;
-            font-size: 0.9rem;
+            padding: 0.9rem 0.8rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        tr {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            * {
+                flex: 1;
+            }
         }
         tr:nth-child(even) {
             background-color: #f4f6fb;
         }
         .status {
+            display: flex;
             border-radius: 5px;
             padding: 0.4rem 0.8rem;
+            justify-content: center;
             text-align: center;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             &.A_idle {
                 background-color: $clr-idle;
                 color: $clr-idle-font;

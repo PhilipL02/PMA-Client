@@ -2,12 +2,32 @@
     position: relative;
     width: 100%;
 }
+
 .errorMessage {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.4rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: rgb(150, 0, 0);
     border: 2px solid rgb(150, 0, 0);
-    background-color: rgb(255, 110, 120);
+    background-color: rgb(255, 125, 125);
+    grid-area: errorMessage;
+}
+
+$loadingSpinnerHeight: 5rem;
+.loadingSpinner {
+    z-index: 4;
+    height: $loadingSpinnerHeight;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: calc(-0.5 * $loadingSpinnerHeight);
+    margin-top: calc(-0.5 * $loadingSpinnerHeight);
+    fill: #404F66;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin{
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
 }

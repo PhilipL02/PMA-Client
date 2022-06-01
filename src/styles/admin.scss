@@ -1,0 +1,35 @@
+.admin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(223, 241, 241);
+    .tableContainer {
+        background-color: rgb(230, 230, 230);
+        width: 95%;
+        margin: auto;
+        margin-top: 1.25rem;
+        box-shadow: 0 0 4px rgb(200, 200, 200);
+        h2 {
+            text-align: center;
+            padding: 0.5rem;
+            background-color: rgb(200, 200, 200);
+            box-shadow: 0 0 8px rgb(210, 210, 210);
+            border: 1px solid gray;
+        }
+    }
+    .popUp {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.7);
+        .popUpInner {
+            padding: 0.5rem;
+            background-color: white;
+        }
+    }
+}

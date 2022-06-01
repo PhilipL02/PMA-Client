@@ -7,13 +7,10 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-html {
-    // overflow-y: scroll;
-}
-
-#root {
+html, body, #root {
     width: 100%;
-    height: 100vh;
+    height: fit-content;
+    font-size: 16px;
 }
 
 @import 'signIn';
@@ -23,18 +20,22 @@ html {
 @import 'sidenav';
 @import 'myBuildings';
 @import 'oneBuilding';
+@import 'createBuildingV1';
 @import 'tasksForBuilding';
 @import 'membersOfBuilding';
 @import 'createTaskForBuilding';
 @import 'myTasks';
+@import 'oneTask';
+@import 'myAccount';
+@import 'admin';
 
 .content {
     position: relative;
     display: flex;
     width: 100%;
-    min-height: calc(100vh - $headerHeight);
+    // min-height: calc(100vh - $headerHeight);
+    min-height: 100vh;
     padding-top: $headerHeight;
-    padding-bottom: 1rem;
     &.right {
         width: calc(100% - 14rem);
         margin-left: 14rem;
@@ -45,6 +46,29 @@ html {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.589);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
+}
+
+.pageCover {
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.loadingSpinner {
+    z-index: 4;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    fill: #404F66;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin{
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
 }

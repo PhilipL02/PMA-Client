@@ -4,8 +4,12 @@ import Sidenav from './Sidenav/Sidenav';
 import SidenavBlock from './Sidenav/SidenavBlock';
 
 import { clsx } from '../utils/utils';
+import { useGlobal } from '../providers/GlobalProvider';
 
 const LeftSidenav = ({ showSidenav, logOut }) => {
+
+    const { userRole } = useGlobal()
+
     return (
         <Sidenav className={clsx({hidden: !showSidenav})}>
             <>
@@ -22,10 +26,12 @@ const LeftSidenav = ({ showSidenav, logOut }) => {
                                     to='/minabyggnader'
                                     text='Mina byggnader'
                                 />
-                                <SidenavBlock
-                                    to='/nybyggnad'
-                                    text='Lägg till byggnad'
-                                />
+                                {userRole === 'customer' &&
+                                    <SidenavBlock
+                                        to='/nybyggnad'
+                                        text='Lägg till byggnad'
+                                    />
+                                }
                             </>
                         }
                     />

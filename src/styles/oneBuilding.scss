@@ -7,6 +7,54 @@
     gap: 1rem;
 }
 
+.popupBackground {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    .deletePopupInner, .editPopupInner {
+        background-color: white;
+        padding: 1.5rem;
+    }
+    .deletePopupInner {
+
+    }
+    .editPopupInner {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        .labelInputContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            min-width: 20rem;
+            label {
+                flex: 3;
+                padding: 0.6rem 0;
+                font-size: 0.9rem;
+            }
+            input, textarea {
+                flex: 7;
+                padding: 0.4rem 0.2rem;
+            }
+            textarea {
+                resize: none;
+            }
+        }
+        button {
+            width: 9rem;
+            align-self: flex-end;
+            padding: 0.2rem;
+        }
+    }
+}
+
 @media only screen and (min-width: 56rem) {
     .createAndMembersContainer {
         flex-direction: row-reverse;
